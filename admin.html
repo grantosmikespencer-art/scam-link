@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Little Date | Private Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <main class="container">
+        <header class="topbar">
+            <a class="brand" href="index.html">♡ Our Little Date</a>
+            <span class="private-label">Private space</span>
+        </header>
+
+        <section id="loginSection" class="panel login-panel">
+            <div class="heart">💗</div>
+            <p class="eyebrow">JUST FOR YOU</p>
+            <h1>Welcome back, love.</h1>
+            <p class="muted">Sign in to see your date plans.</p>
+
+            <form id="loginForm">
+                <label for="email">Email address</label>
+                <input id="email" type="email" autocomplete="username"
+                       placeholder="Your account email" required>
+
+                <label for="password">Password</label>
+                <input id="password" type="password"
+                       autocomplete="current-password"
+                       placeholder="Your password" required>
+
+                <button class="primary-btn" type="submit" id="loginButton">
+                    Log in ♡
+                </button>
+                <p id="loginMessage" class="message" role="status"></p>
+            </form>
+        </section>
+
+        <section id="dashboardSection" hidden>
+            <div class="welcome">
+                <div>
+                    <p class="eyebrow">YOUR LITTLE CORNER</p>
+                    <h1>Our date plans ♡</h1>
+                    <p class="muted">All the little things she's planned with you.</p>
+                </div>
+                <button id="logoutButton" class="secondary-btn" type="button">
+                    Log out
+                </button>
+            </div>
+
+            <div class="stats-card">
+                <span class="stat-heart">♡</span>
+                <div>
+                    <p class="muted">Plans saved</p>
+                    <strong id="planCount">0</strong>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <h2>Her choices</h2>
+                <button id="refreshButton" class="secondary-btn" type="button">
+                    Refresh
+                </button>
+            </div>
+
+            <p id="dashboardMessage" class="message" role="status"></p>
+            <div id="plansList" class="plans-list"></div>
+        </section>
+
+        <footer>Made with love, for your little memories. ♡</footer>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

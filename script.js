@@ -1,3 +1,14 @@
+// ============================================
+// SUPABASE DATABASE CONNECTION
+// ============================================
+
+const SUPABASE_URL = "https://mftfnidgkwfgasxlibiq.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_YY8Q_khpzxxWqb36tmbLpg_RPF58cPp";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 const invitation = document.querySelector(".invitation");
 
@@ -192,10 +203,13 @@ function updateFoodChoices() {
 
 // STEP 3: CONFIRM THE DATE
 
-function submitPlan() {
+
+async function submitPlan() {
     const date = document.getElementById("dateInput").value;
     const time = document.getElementById("timeInput").value;
     const error = document.getElementById("errorMessage");
+
+    error.textContent = "";
 
     if (!date || !time || !selectedActivity || selectedFoods.length === 0) {
         error.textContent =
@@ -212,6 +226,27 @@ function submitPlan() {
         return;
     }
 
+    // Save the selected plan to Supabase first.
+    const { error: saveError } = await supabaseClient
+        .from("date_plans")
+        .insert([
+            {
+                date: date,
+                time: time,
+                activity: selectedActivity,
+                foods: selectedFoods,
+                created_by: "girlfriend"
+            }
+        ]);
+
+    if (saveError) {
+        console.error("Supabase save error:", saveError);
+        error.textContent =
+            "Oops! We couldn't save your plan. Please try again. ♡";
+        return;
+    }
+
+    // Show the confirmation screen only after saving succeeds.
     const readableDate = chosenDate.toLocaleDateString("en-PH", {
         year: "numeric",
         month: "long",
@@ -246,7 +281,6 @@ function submitPlan() {
         </p>
     `;
 }
-
 
 
 /* ==================================
