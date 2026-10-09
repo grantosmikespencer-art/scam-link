@@ -124,7 +124,7 @@ function showPlanner() {
         <p class="subtitle">JUST THE TWO OF US</p>
         <h1 class="planner-title">Plan our date</h1>
         <p class="planner-description">
-            Pick what sounds fun to you, my love.
+            Pick what sounds fun to you, Palangga.
         </p>
 
         <div class="form-group">
@@ -258,7 +258,7 @@ async function submitPlan() {
         <p class="subtitle">OUR LITTLE PLAN</p>
         <h1>It's a plan!</h1>
         <p class="planner-description">
-            Here's what you picked, my love.
+            Here's what you picked, Palangga.
         </p>
 
         <div class="summary">
