@@ -1,0 +1,614 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    background: linear-gradient(135deg, #fff0f5, #ffd6e7);
+    color: #71384f;
+}
+
+.invitation {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 25px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid white;
+    border-radius: 28px;
+    box-shadow: 0 15px 45px rgba(180, 90, 125, 0.18);
+}
+
+.heart {
+    font-size: 55px;
+    color: #df7da3;
+    margin-bottom: 20px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.subtitle {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #bd7794;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 38px;
+    color: #c65f88;
+    margin-bottom: 18px;
+}
+
+.invitation > p:not(.subtitle):not(.footer) {
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+button {
+    width: 100%;
+    max-width: 240px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+#yesBtn {
+    color: white;
+    background: #df7da3;
+    box-shadow: 0 7px 18px rgba(223, 125, 163, 0.3);
+}
+
+#noBtn {
+    color: #a95d7c;
+    background: #ffe8f0;
+}
+
+.footer {
+    margin-top: 28px;
+    font-size: 12px;
+    color: #bb8299;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    .invitation {
+        padding: 35px 20px;
+    }
+}
+
+
+/* DATE PLANNER */
+
+.planner-title {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.planner-description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #9f5575;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #f0c4d5;
+    border-radius: 12px;
+    background: #fff8fb;
+    color: #71384f;
+    font: inherit;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #df7da3;
+    box-shadow: 0 0 0 3px #df7da322;
+}
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.choice {
+    padding: 15px 8px;
+    border: 1px solid #f0c4d5;
+    border-radius: 15px;
+    background: #fff8fb;
+    color: #8e4e6a;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.choice.selected {
+    background: #f9d9e6;
+    border: 2px solid #d66c96;
+    color: #71384f;
+}
+
+.primary-btn {
+    color: white;
+    background: #df7da3;
+    margin-top: 8px;
+}
+
+.secondary-btn {
+    color: #a95d7c;
+    background: #ffe8f0;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: #b83f67;
+    font-size: 13px;
+    margin: 12px 0;
+}
+
+.summary {
+    text-align: left;
+    padding: 18px;
+    border-radius: 16px;
+    background: #fff1f6;
+    margin: 20px 0;
+    line-height: 2;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 400px) {
+    .planner-title {
+        font-size: 26px;
+    }
+
+    .choice {
+        font-size: 12px;
+        padding: 13px 5px;
+    }
+}
+
+
+
+/* ==================================
+   ROMANTIC ANIMATION UPGRADE
+================================== */
+
+/* Keep the background ready for floating hearts */
+body {
+    position: relative;
+    isolation: isolate;
+}
+
+/* Floating heart layer */
+.heart-particles {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -50px;
+    left: var(--left);
+    color: var(--heart-color);
+    font-size: var(--heart-size);
+    opacity: 0;
+    animation: float-heart var(--duration) linear forwards;
+    user-select: none;
+    will-change: transform, opacity;
+}
+
+@keyframes float-heart {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(0.7);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.65;
+    }
+
+    75% {
+        opacity: 0.45;
+    }
+
+    100% {
+        transform:
+            translate3d(var(--drift), -115vh, 0)
+            rotate(var(--rotation))
+            scale(1.15);
+        opacity: 0;
+    }
+}
+
+/* Smooth entrance whenever the invitation screen changes */
+.invitation {
+    animation: card-enter 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transform-origin: center;
+}
+
+.invitation.screen-enter {
+    animation: card-enter 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Soft entrance for text and form sections */
+.invitation h1,
+.invitation .subtitle,
+.invitation .planner-description,
+.invitation .form-group,
+.invitation .summary {
+    animation: content-enter 550ms ease both;
+}
+
+.invitation h1 {
+    animation-delay: 100ms;
+}
+
+.invitation .subtitle {
+    animation-delay: 50ms;
+}
+
+.invitation .planner-description {
+    animation-delay: 160ms;
+}
+
+.invitation .form-group:nth-of-type(1) {
+    animation-delay: 100ms;
+}
+
+.invitation .form-group:nth-of-type(2) {
+    animation-delay: 180ms;
+}
+
+@keyframes content-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* More delightful button interactions */
+button {
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+#yesBtn:hover,
+.primary-btn:hover {
+    box-shadow: 0 10px 28px rgba(214, 108, 150, 0.4);
+}
+
+/* Gentle glow behind the main heart */
+.heart {
+    text-shadow: 0 0 22px rgba(223, 125, 163, 0.3);
+}
+
+/* Better keyboard accessibility */
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #c65f88;
+    outline-offset: 4px;
+}
+
+/* Avoid excessive animation when requested by the device */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==================================
+   READABILITY UPGRADE
+================================== */
+
+/* Make normal text clearer */
+body {
+    color: #633047;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Stronger, clearer main heading */
+h1 {
+    font-weight: 800;
+    letter-spacing: -0.8px;
+    color: #a83f6b;
+    line-height: 1.2;
+}
+
+/* Make small uppercase text easier to read */
+.subtitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: #98506d;
+    letter-spacing: 2px;
+}
+
+/* Improve description readability */
+.invitation > p:not(.subtitle):not(.footer),
+.planner-description {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: #633047;
+}
+
+/* Make buttons more readable */
+button {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Improve date planner labels */
+.form-group label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #793b58;
+}
+
+/* Make selectable choices clearer */
+.choice {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+/* Make the final date summary easier to read */
+.summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: #633047;
+    line-height: 2;
+}
+
+.summary strong {
+    font-weight: 800;
+    color: #8f365c;
+}
+
+/* Keep footer readable without making it too prominent */
+.footer {
+    font-size: 13px;
+    font-weight: 500;
+    color: #98647b;
+}
+
+
+/* Soft, rounded romantic typography */
+body,
+button,
+input {
+    font-family: "Nunito", sans-serif;
+}
+
+body {
+    font-weight: 500;
+}
+
+h1 {
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-weight: 800;
+}
+
+button,
+.form-group label {
+    font-weight: 800;
+}
+
+
+/* Smooth runaway No button */
+#noBtn {
+    transition:
+        left 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        top 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    z-index: 5;
+}
+
+#noBtn.running-away {
+    position: fixed;
+    margin: 0;
+    max-width: 240px;
+    width: min(240px, calc(100vw - 32px));
+    z-index: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #noBtn {
+        transition: none;
+    }
+}
+
+
+/* Runaway button on phones */
+@media (max-width: 600px) {
+    #noBtn.running-away {
+        width: min(200px, calc(100vw - 32px));
+        min-height: 48px;
+        touch-action: manipulation;
+    }
+}
+
+
+/* ==================================
+   IPHONE AND MOBILE LAYOUT FIX
+================================== */
+
+.invitation {
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 60px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 1.5px solid #f0c4d5;
+    border-radius: 18px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Keep the date and time text inside the fields */
+.form-group input[type="date"],
+.form-group input[type="time"] {
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Stop the activity buttons from overflowing */
+.option-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+}
+
+.choice {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Improve spacing on phones */
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .invitation {
+        padding: 30px 18px;
+        border-radius: 24px;
+    }
+
+    .planner-title {
+        font-size: 28px;
+    }
+
+    .planner-description {
+        font-size: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .form-group label {
+        line-height: 1.5;
+    }
+
+    .choice {
+        min-height: 60px;
+        padding: 12px 7px;
+        font-size: 13px;
+    }
+}
+
+
+/* More comfortable activity choices */
+.activity-choice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 64px;
+}
