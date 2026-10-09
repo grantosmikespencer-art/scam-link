@@ -44,6 +44,20 @@ function addDetail(card, label, value) {
     card.appendChild(paragraph);
 }
 
+
+function formatTime(timeString) {
+    const [hours, minutes] = timeString.split(":").map(Number);
+
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+
+    return date.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    });
+}
+
 function renderPlans(plans) {
     plansList.replaceChildren();
     planCount.textContent = plans.length;
@@ -69,7 +83,7 @@ function renderPlans(plans) {
         date.textContent = "📅 " + formatDate(plan.date);
         card.appendChild(date);
 
-        addDetail(card, "Time", plan.time);
+        addDetail(card, "Time", formatTime(plan.time));
         addDetail(card, "Activity", plan.activity);
         addDetail(
             card,
